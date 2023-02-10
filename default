@@ -1,6 +1,5 @@
-# note: URL is wrong, I need to change this...
-        DEFAULT install
-        LABEL install
-          KERNEL vmlinuz
-          INITRD initrd
-          APPEND root=/dev/ram0 ramdisk_size=1500000 ip=dhcp url=http://cdimage.ubuntu.com/ubuntu-server/daily-live/current/focal-live-server-amd64.iso
+        DEFAULT ubuntu-jammy-server
+        LABEL ubuntu-jammy-server
+          KERNEL ubuntu/jammy/server/vmlinuz
+          INITRD ubuntu/jammy/server/initrd
+          APPEND root=/dev/ram0 ramdisk_size=1500000 ip=dhcp url=http://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-amd64.iso
