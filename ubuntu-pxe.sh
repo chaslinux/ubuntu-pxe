@@ -26,3 +26,9 @@ sudo cp /mnt/casper/{vmlinuz,initrd} /srv/tftp/ubuntu/jammy/server
 apt download shim-signed
 dpkg-deb --fsys-tarfile shim-signed*deb | tar x ./usr/lib/shim/shimx64.efi.signed -O > bootx64.efi
 sudo mv bootx64.efi /srv/tftp
+apt download grub-efi-amd64-signed
+dpkg-deb --fsys-tarfile grub-efi-amd64-signed*deb | tar x ./usr/lib/grub/x86_64-efi-signed/grubnetx64.efi.signed -O > grubx64.efi
+sudo mv grubx64.efi /srv/tftp
+apt download grub-common
+dpkg-deb --fsys-tarfile grub-common*deb | tar x ./usr/share/grub/unicode.pf2 -O > unicode.pf2
+sudo mv unicode.pf2 /srv/tftp
