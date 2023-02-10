@@ -5,10 +5,12 @@
 # By Chaslinux, chaslinux@gmail.com
 # I use pfsense rather than dnsmasq for DNS, so skipping that section
 
+STARTINGDIR=$(pwd)
 JAMMYSERVER=jammy-live-server-amd64.iso
 
-# Make the tftp directory to hold Ubuntu Jammy Server
+# Make the tftp directory to hold Ubuntu Jammy Server & grub
 sudo mkdir -p /srv/tftp/ubuntu/jammy/server
+sudo mkdir -p /srv/tftp/grub
 
 # instructions don't use sudo, how are they doing this?
 # get the boot images
@@ -32,3 +34,11 @@ sudo mv grubx64.efi /srv/tftp
 apt download grub-common
 dpkg-deb --fsys-tarfile grub-common*deb | tar x ./usr/share/grub/unicode.pf2 -O > unicode.pf2
 sudo mv unicode.pf2 /srv/tftp
+sudo mv $STARTINGDIR/grub.cfg /srv/tftp/grub
+
+# set up files for legacy boot
+# At this point the Discourse steps are broken because they're based on Eoan, the steps don't work for Jammy
+# I'm going with the little I know from here
+sudo apt install pxelinux syslinux
+sudo cp /usr/lib/PXELINUX/pxelinux.0 /srv/tftp
+sudo cp /usr/lib/syslinux/modules/bios/ldlinux.c32 /srv/tftp
