@@ -11,6 +11,7 @@ JAMMYSERVER=jammy-live-server-amd64.iso
 # Make the tftp directory to hold Ubuntu Jammy Server & grub
 sudo mkdir -p /srv/tftp/ubuntu/jammy/server
 sudo mkdir -p /srv/tftp/grub
+sudo mkdir -p /srv/tftp/pxelinux.cfg
 
 # instructions don't use sudo, how are they doing this?
 # get the boot images
@@ -42,3 +43,5 @@ sudo mv $STARTINGDIR/grub.cfg /srv/tftp/grub
 sudo apt install pxelinux syslinux
 sudo cp /usr/lib/PXELINUX/pxelinux.0 /srv/tftp
 sudo cp /usr/lib/syslinux/modules/bios/ldlinux.c32 /srv/tftp
+sudo cp $STARTINGDIR/default /srv/tftp/pxelinux.cfg/
+
