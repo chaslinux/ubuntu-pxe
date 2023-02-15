@@ -13,6 +13,9 @@ sudo mkdir -p /srv/tftp/ubuntu/jammy/server
 sudo mkdir -p /srv/tftp/grub
 sudo mkdir -p /srv/tftp/pxelinux.cfg
 
+# First update the package repository as the system may not be able to find packages
+sudo apt update
+
 # instructions don't use sudo, how are they doing this?
 # get the boot images
 sudo apt install cd-boot-images-amd64
